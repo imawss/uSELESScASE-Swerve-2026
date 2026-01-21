@@ -241,7 +241,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
    */
   public void driveRobotRelative(double xSpeed, double ySpeed, double rSpeed) {
     if (swerveDrive == null) return;
-    
+
     swerveDrive.drive(
         new Translation2d(xSpeed, ySpeed), 
         rSpeed, 

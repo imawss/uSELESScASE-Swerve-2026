@@ -12,7 +12,7 @@ public class DrivetrainConstants {
   
   public static final File SWERVE_JSON_FILE = new File(Filesystem.getDeployDirectory(), "swerve");
 
-  public static final LinearVelocity MAX_SPEED = Units.MetersPerSecond.of(0);
+  public static final LinearVelocity MAX_SPEED = Units.MetersPerSecond.of(4.5);
 
   public static final Pose2d START_POSE = new Pose2d();
 

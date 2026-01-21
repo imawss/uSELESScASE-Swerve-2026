@@ -3,6 +3,7 @@ package frc.robot.commands.drivetrain;
 import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.constants.IOConstants;
 import frc.robot.subsystems.drivetrain.DrivetrainSubsystem;
 
 public class FieldRelativeDriveCommand extends Command {
@@ -39,9 +40,9 @@ public class FieldRelativeDriveCommand extends Command {
   @Override
   public void execute() {
 
-    xSpeed = xSpeedSupplier.get() * -1;
-    ySpeed = ySpeedSupplier.get() * -1;
-    rSpeed = rSpeedSupplier.get() * -1;
+    xSpeed = xSpeedSupplier.get() > IOConstants.DRIVER_DEADBAND ? xSpeedSupplier.get() * -1 : 0;
+    ySpeed = ySpeedSupplier.get() > IOConstants.DRIVER_DEADBAND ? ySpeedSupplier.get() * -1 : 0;
+    rSpeed = rSpeedSupplier.get() > IOConstants.DRIVER_DEADBAND ? rSpeedSupplier.get() * -1 : 0;
 
     drivetrainSubsystem.driveFieldRelative(xSpeed, ySpeed, rSpeed);
   }
