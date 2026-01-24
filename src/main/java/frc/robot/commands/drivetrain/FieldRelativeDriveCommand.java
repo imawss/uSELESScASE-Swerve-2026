@@ -2,8 +2,6 @@ package frc.robot.commands.drivetrain;
 
 import java.util.function.Supplier;
 
-import org.opencv.core.Mat;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.constants.IOConstants;
 import frc.robot.subsystems.drivetrain.DrivetrainSubsystem;

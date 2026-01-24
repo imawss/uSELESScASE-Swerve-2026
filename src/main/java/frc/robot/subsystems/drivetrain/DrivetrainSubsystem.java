@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.Alert.AlertType;
@@ -21,7 +22,6 @@ import limelight.networktables.LimelightPoseEstimator.EstimationMode;
 import limelight.networktables.LimelightSettings.LEDMode;
 import limelight.networktables.Orientation3d;
 import limelight.networktables.PoseEstimate;
-import limelight.networktables.AngularVelocity3d;
 import swervelib.SwerveDrive;
 import swervelib.parser.SwerveParser;
 import swervelib.telemetry.SwerveDriveTelemetry;
@@ -285,6 +285,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void lockWheels() {
     if (swerveDrive != null) {
       swerveDrive.lockPose();
+    }
+  }
+
+  public void driveToPose(Translation2d pose, Rotation2d rotation)
+  {
+    if (swerveDrive != null){
+      swerveDrive.drive(pose, rotation.getDegrees(), false, false);
     }
   }
 

@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.drivetrain.AimToHubCommand;
 import frc.robot.commands.drivetrain.FieldRelativeDriveCommand;
 import frc.robot.subsystems.drivetrain.DrivetrainSubsystem;
 
@@ -16,6 +17,7 @@ public class RobotContainer {
   CommandXboxController driverController;
 
   FieldRelativeDriveCommand fieldRelativeDriveCommand;
+  AimToHubCommand aimToHubCommand;
 
   public RobotContainer() {
     drivetrainSubsystem = new DrivetrainSubsystem();
@@ -27,16 +29,19 @@ public class RobotContainer {
         driverController::getLeftX,
         driverController::getRightX);
 
+    aimToHubCommand = new AimToHubCommand(drivetrainSubsystem);
     configureBindings();
   }
 
   private void configureBindings() {
     drivetrainSubsystem.setDefaultCommand(fieldRelativeDriveCommand);
 
-    //brake with A button.
-    //TODO: Learn the SwerveDriveRequest System or an Alternative for YAGSL
+    // brake with A button.
+    // TODO: Learn the SwerveDriveRequest System or an Alternative for YAGSL
     driverController.a().whileTrue(
         Commands.run(() -> drivetrainSubsystem.lockWheels(), drivetrainSubsystem));
+
+    //driverController.x().whileTrue(aimToHubCommand); //NOT READY FOR TESTING!
   }
 
   public Command getAutonomousCommand() {
